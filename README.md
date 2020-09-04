@@ -1,2 +1,1 @@
-# kupisve.github.com
-Test
+# KupiSVE - onlajn platforma za besplatne oglase
