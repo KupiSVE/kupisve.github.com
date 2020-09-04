@@ -2,4 +2,4 @@
 
 
 
-[Open with Viber](viber://pa/info?uri=kupisve)
+[Open with Viber](https://kupisve.github.io/viber)
