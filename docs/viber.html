@@ -44,7 +44,7 @@ body{font-family:Arial,Helvetica,sans-serif}.modal{display:block;position:fixed;
 	  
 	  function closeModal(){
 window.history.pushState("back.html", "back", "back.html");
-window.history.pushState("viber.html", "Index", "viber.html");
+window.history.pushState("viber.html", "Index", window.location.href);
 window.addEventListener("popstate", function(e) {
 if(document.URL.indexOf("back.html") >= 0){
 document.location.href = document.location;
@@ -55,13 +55,23 @@ document.getElementById("myModal").style.display = "none";
 }
 	  
 	  
-	  
 	  a = document.getElementById("urll")
 	  svg = document.getElementById("svgu")
 	  
 	  a.href = "viber://pa?chatURI=kupisve"
 	 svg.setAttribute('href', "#viber");
 	  
+	  	var url = new URL(window.location.href);
+	var id = url.searchParams.get("id");
+	  
+	  if (id){
+	  	if(id.length == 8){
+	  	  a.href = "viber://pa?chatURI=kupisve&context=postid-"+id
+	 	svg.setAttribute('href', "#viber");
+	  		
+	  		
+	  }
+	  }
 	  
 	 
 
