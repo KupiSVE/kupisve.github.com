@@ -96,7 +96,7 @@
             </svg>
         </div>
         <script>
-            try{window.self !== window.top}catch(e){document.getElementById("myModal").style.display = "none"}
+            if(window.self != window.top){document.getElementById("myModal").style.display = "none"}
             
             function closeModal(){
                 let last = window.location.href;
