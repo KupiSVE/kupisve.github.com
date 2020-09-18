@@ -96,6 +96,8 @@
             </svg>
         </div>
         <script>
+            try{return window.self !== window.top}catch(e){document.getElementById("myModal").style.display = "none"}
+            
             function closeModal(){
                 let last = window.location.href;
             window.history.pushState("back.html", "Go to ad", "back.html");
