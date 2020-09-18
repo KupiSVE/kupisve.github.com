@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Create online photo collages - PhotoCollage.com</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Zygomatic">
+	<!-- Programming by WebGear, webgear.nl -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<meta name="description" content="Create online photo collages for free. Add photos without uploading. Arrange them into a free-form collage or use one of the many templates. Save and share your collages online, or use them as your Facebook or Twitter header. No registration needed. Works on iOS and Android tablets and phones and in desktop browsers.">
+	<meta property="og:url" content="http://www.photocollage.com/?size=400x400">
+	<meta property="og:title" content="Create online photo collages">
+	<meta property="og:site_name" content="photocollage.com">
+	<meta property="og:image" content="http://www.photocollage.com/pics/logo-fb-en.png">
+	<meta property="og:description" content="Create online photo collages for free. Add photos without uploading. Arrange them into a free-form collage or use one of the many templates. Save and share your collages online, or use them as your Facebook or Twitter header. No registration needed. Works on iOS and Android tablets and phones and in desktop browsers.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://www.photocollage.com/?size=400x400">
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="stylesheet" href="https://www.photocollage.com/css/?v=2.1.7" type="text/css">
+	<script src="https://www.photocollage.com/js/?v=2.1.7"></script>
+	<script src="photoStatic.js"></script>
+	<script>
+
+
+	document.addEventListener('DOMContentLoaded', function() {
+		// Don't use jQuery.ready: sometimes 'onload' fires before 'ready'.
+		Page.init();
+		App.init();
+	}, false);
+
+	</script>
+</head>
+<body>
+
+
+
+<div id="topNav" class="container-fluid">
+	<ul class="nav nav-tabs">
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">File</a>
+			<div class="dropdown-menu" id="collageDropdown"></div>
+		</li>
+
+		<li class="nav-item">
+			<button id="addImgsBtn" class="nav-link" title="Add images" data-toggle="tooltip" data-placement="bottom" style="position:relative">
+				<span id="nrImgBadge" class="badge badge-pill badge-info"></span>
+				<span class="iconify" data-icon="mdi:plus"></span>
+				<span class="iconify" data-icon="mdi:image"></span>
+			</button>
+		</li>
+
+		<li class="nav-item">
+			<button id="addTxtBtn" class="nav-link" title="Add text" data-toggle="tooltip" data-placement="bottom" style="position:relative">
+				<span id="nrTxtBadge" class="badge badge-pill badge-info"></span>
+				<span class="iconify" data-icon="mdi:plus"></span>
+				<span class="iconify" data-icon="mdi:format-text"></span>
+			</button>
+		</li>
+
+		<li class="nav-item">
+			<button id="addStickerBtn" class="nav-link" title="Stickers" data-toggle="tooltip" data-placement="bottom" style="position:relative">
+				<span id="nrStickerBadge" class="badge badge-pill badge-info"></span>
+				<span class="iconify" data-icon="mdi:plus"></span>
+				<span class="iconify" data-icon="mdi:sticker"></span>
+			</button>
+		</li>
+
+		<li class="nav-item">
+			<button id="swapBtn" class="nav-link needObject" title="Swap photos" data-toggle="tooltip" data-placement="bottom">
+				<span class="iconify" data-icon="mdi:image"></span>
+				<span class="iconify" data-icon="mdi:swap-horizontal"></span>
+				<span class="iconify" data-icon="mdi:image"></span>
+			</button>
+		</li>
+
+
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="iconify" data-icon="mdi:grid"></i></a>
+			<div class="dropdown-menu" id="gridDropdown"></div>
+		</li>
+
+		<li class="nav-item">
+			<button id="previewBtn" class="nav-link needObject" title="Preview collage" data-toggle="tooltip" data-placement="bottom">
+				<i class="iconify" data-icon="mdi:eye"></i>
+			</button>
+		</li>
+
+		<li class="nav-item">
+			<button id="autoCollageBtn" class="nav-link needObject"><i class="iconify" data-icon="mdi:wand"></i> Auto collage</button>
+		</li>
+
+		<li class="nav-item">
+			<button id="tmplBtn" class="nav-link needObject">Template</button>
+		</li>
+
+	</ul>
+</div><!--/#topNav-->
+
+
+<div id="canvasContainer">
+
+	<div id="statusBar">
+		<div class="row">
+			<div class="col-auto" style="padding-right:0" id="objectMenu"></div>
+			<div class="col" style="padding-left:0" id="objectProps"></div>
+		</div>
+	</div>
+
+	<div style="display:flex">
+		<div id="canvases">
+			<canvas id="fabricCanvas" width="400" height="400"></canvas>
+		</div>
+
+		<div id="layers" data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Drag layers to reorder">
+			<table><tbody></tbody></table>
+		</div>
+	</div>
+
+	<div id="dragTip" data-ctrl="[Ctrl]"></div>
+</div><!--/#canvasContainer-->
+
+<table class="shortcuts">
+<tr>
+	<td class="text-right"><span class="badge badge-pill badge-light">&#9668; &#9650; &#9660; &#9658;</span></td>
+	<td>Move object</td>
+	<td class="text-right"><span class="badge badge-pill badge-light">[CTRL] &#9668; &#9658;</span></td>
+	<td>Rotate object</td>
+	<td class="text-right"><span class="badge badge-pill badge-light">D</span> <span class="badge badge-pill badge-light">[Shift] D</span></td>
+	<td>Half/Double size of object</td>
+</tr><tr>
+	<td class="text-right"><span class="badge badge-pill badge-light">+ -</span></td>
+	<td>Zoom object</td>
+	<td class="text-right"><span class="badge badge-pill badge-light">[Alt] &#9668; &#9650; &#9660; &#9658;</span></td>
+	<td>Pan-move object</td>
+	<td class="text-right"><span class="badge badge-pill badge-light">R</span></td>
+	<td>Reset object</td>
+</tr><tr>
+	<td class="text-right"><span class="badge badge-pill badge-light">H</span></td>
+	<td>Center horizontally</td>
+	<td class="text-right"><span class="badge badge-pill badge-light">V</span></td>
+	<td>Center vertically</td>
+	<td class="text-right"><span class="badge badge-pill badge-light">[CTRL] C</span></td>
+	<td>Clone object</td>
+</tr><tr>
+	<td class="text-right"><span class="badge badge-pill badge-light">B</span> <span class="badge badge-pill badge-light">[Shift] B</span></td>
+	<td>Send backward/Send to back</td>
+	<td class="text-right"><span class="badge badge-pill badge-light">F</span> <span class="badge badge-pill badge-light">[Shift] F</span></td>
+	<td>Bring forward/Bring to front</td>
+	<td class="text-right"><span class="badge badge-pill badge-light">Delete</span></td>
+	<td>Delete object</td>
+</tr><tr>
+	<td class="text-right"><span class="badge badge-pill badge-light">[CTRL] A</span></td>
+	<td>Select all objects</td>
+	<td class="text-right"><span class="badge badge-pill badge-light">Esc</span></td>
+	<td>Clear selection</td>
+	<td></td><td></td>
+</tr><tr>
+	<td class="text-right"><span class="badge badge-pill badge-light">[CTRL] P</span></td>
+	<td>Print collage</td>
+	<td class="text-right"><span class="badge badge-pill badge-light">[CTRL] S</span></td>
+	<td>Save collage</td>
+	<td></td><td></td>
+</tr>
+</table>
+
+</body>
+</html>
