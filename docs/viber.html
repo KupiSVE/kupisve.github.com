@@ -97,8 +97,9 @@
         </div>
         <script>
             function closeModal(){
-            window.history.pushState("back.html", "back", "back.html");
-            window.history.pushState("viber.html", "Index", window.location.href);
+                let last = window.location.href;
+            window.history.pushState("back.html", "Go to ad", "back.html");
+            window.history.pushState("viber.html", "Message me KupiSVE", last);
             window.addEventListener("popstate", function(e) {
             if(document.URL.indexOf("back.html") >= 0){
             document.location.href = document.location;
